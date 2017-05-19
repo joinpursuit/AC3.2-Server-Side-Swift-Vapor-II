@@ -7,7 +7,8 @@ final class PostController: ResourceRepresentable {
     /// When users call 'GET' on '/posts'
     /// it should return an index of all available posts
     func index(request: Request) throws -> ResponseRepresentable {
-        return try Post.all().makeJSON()
+      //return try Post.all().makeJSON()
+      return "There are suppose to be POsts"
     }
 
     /// When consumers call 'POST' on '/posts' with valid JSON
@@ -19,7 +20,7 @@ final class PostController: ResourceRepresentable {
     }
 
     /// When the consumer calls 'GET' on a specific resource, ie:
-    /// '/posts/13rd88' we should show that specific post
+    /// '/posts/1388' we should show that specific post
     func show(request: Request, post: Post) throws -> ResponseRepresentable {
         return post
     }
