@@ -176,4 +176,57 @@ Though if we try to build at this point, we're met with an error:
 
 ![Our Model... Almost](./Images/model-protocol.png)
 
-Well, I guess that just means we'll need to make our `Cat` model a fully fledged Vapor `Model` type. But we'll leave that for next time 😇
+Conforming to the `Model` protocol is somewhat straightforward and you should see the how it works from the code:
+
+```swift
+  import Fluent
+  import FluentProvider
+  
+  final class Cat: Model, NodeInitializable, NodeRepresentable {
+  
+  
+    // ... all the other code
+
+    // MARK: Persistance Storage / Fluent
+    func makeRow() throws -> Row {
+      var row = Row()
+      try row.set("name", self.name)
+      try row.set("breed", self.breed)
+      try row.set("snack", self.snack)
+      return row
+    }
+  
+    init(row: Row) throws {
+      self.name = try row.get("name")
+      self.breed = try row.get("breed")
+      self.snack = try row.get("snack")
+    }
+```
+
+Conforming to the `Model` protocol also give you database CRUD functions for "free", simply by calling `.save()` on the object, for example. *Note: out of the box, you can use the Fluent provider for in-memory storage right away. But it's perhaps advisable that you instead add MySQL or SQLite instead (vapor official). MongoDB and PostgreSQL are available from the [Vapor community page](https://github.com/vapor-community).*
+
+Returning to the `CatRESTController`, we can now fill in a bit more of the class:
+
+```swift
+final class CatRESTController: ResourceRepresentable {
+  
+  // The only way for your resource to work here, is if it conforms to the Model protocol
+  func makeResource() -> Resource<Cat> {
+    return Resource()
+  }
+}
+
+// This extension is needed from some forgotten reason
+extension CatRESTController: EmptyInitializable {}
+```
+
+---
+
+### Next Topics:
+- Persistant Storage
+- Database Drivers
+- Adding PostgreSQL Provider
+
+### Further Topics:
+- Deploy to Heroku
+- Deploy to Heroku using Docker
