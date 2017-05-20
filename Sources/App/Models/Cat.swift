@@ -12,7 +12,7 @@ import Vapor
 import Fluent
 import FluentProvider
 
-final class Cat: Model, NodeInitializable, NodeRepresentable {
+final class Cat: Model, NodeConvertible {
   let name: String
   let breed: String
   let snack: String
@@ -72,3 +72,54 @@ extension Cat: ResponseRepresentable {
     return try self.makeJSON().makeResponse()
   }
 }
+
+// MARK: Preparation
+extension Cat: Preparation {
+  static func prepare(_ database: Database) throws {
+    
+    try database.create(Cat.self) { creator in
+      creator.id()
+      creator.string("name")
+      creator.string("breed")
+      creator.string("snack")
+    }
+  }
+  
+  static func revert(_ database: Database) throws {
+    try database.delete(Cat.self)
+  }
+}
+
+/*
+extension Cat: Parameterizable {
+  static var uniqueSlug: String {
+    return "cat"
+  }
+  
+  static func make(for parameter: String) throws -> Cat {
+    guard let foundCat = try Cat.makeQuery().filter("name", parameter).entity else {
+      throw Abort.notFound
+    }
+    
+    return foundCat
+  }
+}*/
+
+extension Cat: FuzzyConverter {
+  static func initialize<T>(node: Node) throws -> T? {
+    guard node.context.isJSON else { return nil }
+    guard let type = T.self as? JSONInitializable.Type else { return nil }
+    
+    let json = node.converted(to: JSON.self)
+    return try type.init(json: json) as? T
+  }
+  
+  static func represent<T>(_ any: T, in context: Context) throws -> Node? {
+    guard context.isJSON else { return nil }
+    guard let r = any as? JSONRepresentable else { return nil }
+    
+    return try r.makeJSON().converted()
+  }
+  
+}
+

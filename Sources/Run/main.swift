@@ -1,4 +1,3 @@
-import App
 import HTTP
 
 let config = try Config()
@@ -9,8 +8,8 @@ try drop.setup()
 
 try drop.resource("kittens", CatRESTController.self)
 
-let catController = CatsController()
-catController.addRoutes(drop: drop)
+//let catController = CatsController()
+//catController.addRoutes(drop: drop)
 
 
 

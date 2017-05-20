@@ -10,20 +10,35 @@ import Foundation
 import Vapor
 
 final class CatRESTController: ResourceRepresentable {
-  
   func index(_ request: Request) throws -> ResponseRepresentable {
-    return "ALL THE INDEX OF CATS"
+    return try Cat.all().makeJSON()
   }
   
   func create(_ request: Request) throws -> ResponseRepresentable {
-    return "CREATE THE INDEX OF CATS"
+    guard
+      let catName = request.json?["cat_name"]?.string,
+      let catBreed = request.json?["cat_breed"]?.string,
+      let catSnack = request.json?["cat_snack"]?.string else {
+        throw Abort.badRequest
+    }
+    
+    let newCat = Cat(name: catName, breed: catBreed, snack: catSnack)
+    try newCat.save()
+    return try JSON(node: ["success": true, "cat" : newCat])
+  }
+  
+  func show(_ request: Request, param: Cat) throws -> ResponseRepresentable {
+    
+    
+    return "Hello"
   }
   
   // The only way for your resource to work here, is
   // if it conforms to the Model protocol
   func makeResource() -> Resource<Cat> {
     return Resource(index:  index,
-                    create: create)
+                    store: create,
+                    show: show)
   }
 }
 

@@ -4,7 +4,7 @@ extension Config {
     public func setup() throws {
         // allow fuzzy conversions for these types
         // (add your own types here)
-        Node.fuzzy = [Row.self, JSON.self, Node.self]
+        Node.fuzzy = [Row.self, JSON.self, Node.self, Cat.self]
 
         try setupProviders()
         try setupPreparations()
@@ -18,8 +18,7 @@ extension Config {
     /// Add all models that should have their
     /// schemas prepared before the app boots
     private func setupPreparations() throws {
-        preparations += [
-            Post.self
-        ]
+        preparations += [Post.self]
+        preparations += [Cat.self]
     }
 }
