@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    #embed("head")
+  </head>
+  
+  <body>
+    #import("message")
+    
+    #embed("body")
+  </body>
+  
+</html>

@@ -14,6 +14,12 @@
       "version": "1.0.0"
     },
     {
+      "package": "CPostgreSQL",
+      "reason": null,
+      "repositoryURL": "https://github.com/vapor-community/cpostgresql.git",
+      "version": "2.0.0"
+    },
+    {
       "package": "CTLS",
       "reason": null,
       "repositoryURL": "https://github.com/vapor/ctls.git",
@@ -29,7 +35,7 @@
       "package": "Core",
       "reason": null,
       "repositoryURL": "https://github.com/vapor/core.git",
-      "version": "2.0.0"
+      "version": "2.0.1"
     },
     {
       "package": "Crypto",
@@ -53,7 +59,7 @@
       "package": "Fluent",
       "reason": null,
       "repositoryURL": "https://github.com/vapor/fluent.git",
-      "version": "2.0.0"
+      "version": "2.0.1"
     },
     {
       "package": "FluentProvider",
@@ -65,7 +71,19 @@
       "package": "JSON",
       "reason": null,
       "repositoryURL": "https://github.com/vapor/json.git",
+      "version": "2.0.2"
+    },
+    {
+      "package": "Leaf",
+      "reason": null,
+      "repositoryURL": "https://github.com/vapor/leaf.git",
       "version": "2.0.0"
+    },
+    {
+      "package": "LeafProvider",
+      "reason": null,
+      "repositoryURL": "https://github.com/vapor/leaf-provider.git",
+      "version": "1.0.0"
     },
     {
       "package": "Multipart",
@@ -77,6 +95,24 @@
       "package": "Node",
       "reason": null,
       "repositoryURL": "https://github.com/vapor/node.git",
+      "version": "2.0.1"
+    },
+    {
+      "package": "PostgreSQL",
+      "reason": null,
+      "repositoryURL": "https://github.com/vapor-community/postgresql.git",
+      "version": "2.0.1"
+    },
+    {
+      "package": "PostgreSQLDriver",
+      "reason": null,
+      "repositoryURL": "https://github.com/vapor/postgresql-driver.git",
+      "version": "2.0.0"
+    },
+    {
+      "package": "PostgreSQLProvider",
+      "reason": null,
+      "repositoryURL": "https://github.com/vapor/postgresql-provider.git",
       "version": "2.0.0"
     },
     {
@@ -101,7 +137,7 @@
       "package": "Sockets",
       "reason": null,
       "repositoryURL": "https://github.com/vapor/sockets.git",
-      "version": "2.0.0"
+      "version": "2.0.1"
     },
     {
       "package": "TLS",
@@ -113,7 +149,7 @@
       "package": "Vapor",
       "reason": null,
       "repositoryURL": "https://github.com/vapor/vapor.git",
-      "version": "2.0.0"
+      "version": "2.0.2"
     }
   ],
   "version": 1

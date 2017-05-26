@@ -1,4 +1,5 @@
-import HTTP
+import App
+
 
 let config = try Config()
 try config.setup()
@@ -6,27 +7,7 @@ try config.setup()
 let drop = try Droplet(config)
 try drop.setup()
 
-try drop.resource("kittens", CatRESTController.self)
-
-//let catController = CatsController()
-//catController.addRoutes(drop: drop)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+config.addRoutes(drop: drop)
 
 
 

@@ -1,0 +1,25 @@
+
+  #if(name) {
+  Hello, #(name)!
+  } ##else() {
+  Hello, Stranger!
+  }
+  
+  <table>
+    <tr>
+      <td> Name </td><td> Breed </td><td> Snack </td>
+    </tr>
+    
+    #loop(content, "cat") {
+      <tr>
+          <td> #(cat.name) </td><td> #(cat.breed) </td><td> #(cat.snack) </td>
+      </tr>
+    }
+  </table
+    
+    
+  #loop(content, "cat") {
+  <h4>Hello, #(cat.name)!</h4>
+  According to our records, you are a #(cat.breed) who likes #(cat.snack)
+  }
+  </tr>

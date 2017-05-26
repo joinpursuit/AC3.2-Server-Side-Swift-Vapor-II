@@ -8,7 +8,6 @@
 
 import Foundation
 import Vapor
-
 import Fluent
 import FluentProvider
 
@@ -43,7 +42,7 @@ final class Cat: Model, NodeConvertible {
     return try Node(node: ["name":self.name, "breed":self.breed, "snack":self.snack])
   }
   
-  // MARK: Persistance Storage / Fluent
+  // MARK: Model Protocol
   func makeRow() throws -> Row {
     var row = Row()
     try row.set("name", self.name)
@@ -73,10 +72,9 @@ extension Cat: ResponseRepresentable {
   }
 }
 
-// MARK: Preparation
+// MARK: Preparations
 extension Cat: Preparation {
   static func prepare(_ database: Database) throws {
-    
     try database.create(Cat.self) { creator in
       creator.id()
       creator.string("name")
@@ -89,6 +87,70 @@ extension Cat: Preparation {
     try database.delete(Cat.self)
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+// MARK: Preparation
+extension Cat: Preparation {
+  static func prepare(_ database: Database) throws {
+      try database.create(Cat.self) { creator in
+        creator.id()
+        creator.string("name")
+        creator.string("breed")
+        creator.string("snack")
+      }
+  }
+  
+  static func revert(_ database: Database) throws {
+    try database.delete(Cat.self)
+  }
+}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 extension Cat: Parameterizable {
@@ -104,7 +166,7 @@ extension Cat: Parameterizable {
     return foundCat
   }
 }*/
-
+/*
 extension Cat: FuzzyConverter {
   static func initialize<T>(node: Node) throws -> T? {
     guard node.context.isJSON else { return nil }
@@ -121,5 +183,5 @@ extension Cat: FuzzyConverter {
     return try r.makeJSON().converted()
   }
   
-}
+}*/
 
